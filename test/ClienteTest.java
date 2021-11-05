@@ -1,4 +1,10 @@
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
+
 class ClienteTest {
-  
+
+    @Test
+    public void deveInstanciarClienteComSucesso() {
+
+
+    }
 }
