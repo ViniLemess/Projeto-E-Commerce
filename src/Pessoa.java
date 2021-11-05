@@ -5,7 +5,7 @@ public abstract class Pessoa {
 
     private Contato contato;
     private Endereco endereco;
-    protected List<String> mensagensDeErro;
+    protected List<String> mensagensDeErro = new ArrayList<>();
 
     public Pessoa(Contato contato, Endereco endereco) {
         this.contato = contato;
@@ -21,9 +21,6 @@ public abstract class Pessoa {
         return endereco;
     }
 
-    public List<String> getMensagensDeErro() {
-        return mensagensDeErro;
-    }
     protected abstract void validar();
 
     private void validacaoPai() {
