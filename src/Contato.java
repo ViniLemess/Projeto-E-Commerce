@@ -9,7 +9,7 @@ public class Contato {
 
     public Contato(String email, String telefone) {
         this.email = email;
-        telefone = telefone;
+        this.telefone = telefone;
         validar();
     }
 
