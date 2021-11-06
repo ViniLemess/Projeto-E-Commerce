@@ -33,9 +33,5 @@ public abstract class Pessoa {
 
             mensagensDeErro.add("Contato deve ser informado!");
         }
-        if (!mensagensDeErro.isEmpty()) {
-
-            throw new IllegalArgumentException(mensagensDeErro.toString());
-        }
     }
 }
