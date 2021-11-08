@@ -38,7 +38,6 @@ class ClienteTest {
             Helper stringGigante = new Helper();
 
             String palavraGigante = stringGigante.gerarPalavra(101);
-            System.out.println(palavraGigante);
             Endereco enderecoVinicius = new Endereco(palavraGigante, palavraGigante, palavraGigante, palavraGigante, palavraGigante);
             Contato contatoVinicius = new Contato(palavraGigante, palavraGigante);
 
