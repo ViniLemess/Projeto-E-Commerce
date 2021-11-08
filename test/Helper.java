@@ -5,11 +5,11 @@ public class Helper {
 
     public String gerarPalavra(int tamanho) {
 
-        List<String> caracteres = new ArrayList<>();
-        for (int i = 0; i <= 100; i++) {
+        String caracter = "";
+        for (int i = 0; i <= tamanho; i++) {
 
-            caracteres.add("a");
+            caracter += "a";
         }
-        return (caracteres.toString());
+        return caracter;
     }
 }

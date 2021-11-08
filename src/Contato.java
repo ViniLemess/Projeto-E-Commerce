@@ -21,7 +21,7 @@ public class Contato {
         return telefone;
     }
 
-    public void validar() {
+    protected   List<String> validar() {
 
         List<String> mensagensDeErro = new ArrayList<>();
 
@@ -39,9 +39,7 @@ public class Contato {
 
             mensagensDeErro.add("Número de caracteres de telefone excedido!");
         }
-        if(!mensagensDeErro.isEmpty()) {
 
-            throw new IllegalArgumentException(mensagensDeErro.toString());
-        }
+        return mensagensDeErro;
     }
 }

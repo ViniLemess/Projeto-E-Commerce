@@ -37,6 +37,10 @@ public class Cliente extends Pessoa{
 
             mensagensDeErro.add("CPF Inválido");
         }
+
+        mensagensDeErro.addAll(getEndereco().validar());
+        mensagensDeErro.addAll(getContato().validar());
+
         if (!mensagensDeErro.isEmpty()) {
 
             throw  new IllegalArgumentException(mensagensDeErro.toString());

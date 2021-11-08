@@ -59,7 +59,7 @@ public class Endereco {
         return estado;
     }
 
-    private void validar() {
+    protected List<String> validar() {
 
         List<String> mensagensDeErro = new ArrayList<>();
 
@@ -98,9 +98,7 @@ public class Endereco {
 
             mensagensDeErro.add("Número de caracteres de estado inválido!");
         }
-        if (!mensagensDeErro.isEmpty()) {
 
-            throw new IllegalArgumentException(mensagensDeErro.toString());
-        }
+        return mensagensDeErro;
     }
 }
