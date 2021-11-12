@@ -98,6 +98,14 @@ public class Endereco {
 
             mensagensDeErro.add("Número de caracteres de estado inválido!");
         }
+        if (this.numero != null && this.numero.length() > 6) {
+
+            mensagensDeErro.add("Número de caracteres de numero excedido!");
+        }
+        if (this.complemento != null && this.complemento.length() > 120) {
+
+            mensagensDeErro.add("Número de caracteres de complemento excedido!");
+        }
 
         return mensagensDeErro;
     }
