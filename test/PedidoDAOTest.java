@@ -98,6 +98,8 @@ class PedidoDAOTest {
 
         pedidoDAO.addPedido(pedido);
 
-        var pedidosBuscados = pedidoDAO.
+        var pedidosBuscados = pedidoDAO.buscarTodosPedidos();
+
+        Assertions.assertEquals(1, pedidosBuscados.size());
     }
 }
