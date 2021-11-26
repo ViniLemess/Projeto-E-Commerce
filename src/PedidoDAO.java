@@ -131,9 +131,6 @@ public class PedidoDAO {
                 var valorUnitario = resultados.getDouble("valorUnitario");
                 Produto produto = new Produto(nomeProduto, descricaoProduto, valorUnitario);
                 Item item = new Item(produto, quantidade);
-                System.out.println(item.getProduto().getNome());
-                System.out.println(item.getProduto().getDescricao());
-                System.out.println(item.getProduto().getValorUnitario());
                 itens.add(item);
 
             }
