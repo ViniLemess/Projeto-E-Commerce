@@ -21,7 +21,7 @@ public class Contato {
         return telefone;
     }
 
-    protected   List<String> validar() {
+    protected List<String> validar() {
 
         List<String> mensagensDeErro = new ArrayList<>();
 

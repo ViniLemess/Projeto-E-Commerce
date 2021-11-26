@@ -26,7 +26,8 @@ public class FornecedorDAO {
 
             try {
 
-                String sql = "INSERT INTO fornecedor (nomeFantasia, cnpj, email, telefone, rua, numero, bairro, complemento, cep, cidade, estado) " +
+                String sql = "INSERT INTO fornecedor (nomeFantasia, cnpj, emailFornecedor, telefoneFornecedor, ruaFornecedor," +
+                        " numeroFornecedor, bairroFornecedor, complementoFornecedor, cepFornecedor, cidadeFornecedor, estadoFornecedor) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? , ?, ?)";
                 PreparedStatement preparedStatement = conexao.prepareStatement(sql);
                 preparedStatement.setString(1, model.getNomeFantasia());

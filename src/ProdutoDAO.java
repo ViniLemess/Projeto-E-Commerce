@@ -24,7 +24,7 @@ public class ProdutoDAO {
 
         try {
 
-            String sql = "INSERT INTO produto (nome, descricao, valorUnitario) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO produto (nomeProduto, descricao, valorUnitario) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = conexao.prepareStatement(sql);
             preparedStatement.setString(1, model.getNome());
             preparedStatement.setString(2, model.getDescricao());

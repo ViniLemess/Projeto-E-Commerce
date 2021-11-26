@@ -1,5 +1,7 @@
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class PedidoDAO {
@@ -64,6 +66,162 @@ public class PedidoDAO {
 
             sqlException.printStackTrace();
         }
+    }
+
+    public List<Pedido> buscarTodosPedidos() {
+
+        List<Pedido> pedidos = new ArrayList<>();
+        try {
+
+            String sql = "select * from pedido p " +
+                    "inner join fornecedor f on f.id_fornecedor = p.id_fornecedor " +
+                    "inner join cliente c on c.id_cliente = p.id_cliente " +
+                    "inner join item i on i.id_pedido = p.id_pedido " +
+                    "inner join produto pr on pr.id_produto = i.id_produto";
+            Statement preparedStatement = conexao.createStatement();
+            ResultSet resultados = preparedStatement.executeQuery(sql);
+
+            List<Item> itens = new ArrayList<>();
+            LocalDateTime dataCompra = null;
+            double valorFrete = 0;
+            Cliente cliente = null;
+            Fornecedor fornecedor = null;
+
+            while (resultados.next()) {
+
+                //pedido
+                dataCompra = resultados.getObject("dataCompra", LocalDateTime.class);
+                valorFrete = resultados.getDouble("valorFrete");
+                //fornecedor
+                var nomeFantasia = resultados.getString("nomeFantasia");
+                var cnpj = resultados.getString("cnpj");
+                var emailFornecedor = resultados.getString("emailFornecedor");
+                var telefoneFornecedor = resultados.getString("telefoneFornecedor");
+                var ruaFornecedor = resultados.getString("ruaFornecedor");
+                var numeroFornecedor = resultados.getString("numeroFornecedor");
+                var bairroFornecedor = resultados.getString("bairroFornecedor");
+                var complementoFornecedor = resultados.getString("complementoFornecedor");
+                var cepFornecedor = resultados.getString("cepFornecedor");
+                var cidadeFornecedor = resultados.getString("cidadeFornecedor");
+                var estadoFornecedor = resultados.getString("estadoFornecedor");
+                //cliente
+                var nomeCliente = resultados.getString("nomeCliente");
+                var cpf = resultados.getString("cpf");
+                var emailCliente = resultados.getString("emailCliente");
+                var telefoneCliente = resultados.getString("telefoneCliente");
+                var ruaCliente = resultados.getString("ruaCliente");
+                var numeroCliente = resultados.getString("numeroCliente");
+                var bairroCliente = resultados.getString("bairroCliente");
+                var complementoCliente = resultados.getString("complementoCliente");
+                var cepCliente = resultados.getString("cepCliente");
+                var cidadeCliente = resultados.getString("cidadeCliente");
+                var estadoCliente = resultados.getString("estadoCliente");
+
+                Contato contatoFornecedor = new Contato(emailFornecedor, telefoneFornecedor);
+                Endereco enderecoFornecedor = new Endereco(ruaFornecedor, numeroFornecedor, bairroFornecedor, complementoFornecedor, cepFornecedor, cidadeFornecedor, estadoFornecedor);
+                fornecedor = new Fornecedor(contatoFornecedor, enderecoFornecedor, nomeFantasia, cnpj);
+
+                Contato contatoCliente = new Contato(emailCliente, telefoneCliente);
+                Endereco enderecoCliente = new Endereco(ruaCliente, numeroCliente, bairroCliente, complementoCliente, cepCliente, cidadeCliente, estadoCliente);
+                cliente = new Cliente(contatoCliente, enderecoCliente, nomeCliente, cpf);
+                //produto
+                var quantidade = resultados.getInt("quantidade");
+                var nomeProduto = resultados.getString("nomeProduto");
+                var descricaoProduto = resultados.getString("descricao");
+                var valorUnitario = resultados.getDouble("valorUnitario");
+                Produto produto = new Produto(nomeProduto, descricaoProduto, valorUnitario);
+                Item item = new Item(produto, quantidade);
+                System.out.println(item.getProduto().getNome());
+                System.out.println(item.getProduto().getDescricao());
+                System.out.println(item.getProduto().getValorUnitario());
+                itens.add(item);
+
+            }
+            pedidos.add(new Pedido(dataCompra, fornecedor, cliente, valorFrete, itens));
+
+        } catch (SQLException sqlException) {
+
+            sqlException.printStackTrace();
+        }
+        if (pedidos.isEmpty()) {
+
+            throw new IllegalArgumentException("Nenhum pedido encontrado!");
+        }
+        return pedidos;
+
+    }
+
+    public Pedido buscarPedidoPorId(int id) {
+
+        try {
+            String sql = "select * from pedido p " +
+                    "inner join fornecedor f on f.id_fornecedor = p.id_fornecedor " +
+                    "inner join cliente c on c.id_cliente = p.id_cliente " +
+                    "inner join item i on i.id_pedido = p.id_pedido " +
+                    "inner join produto pr on pr.id_produto = i.id_produto WHERE p.id_pedido=" + id;
+            Statement preparedStatement = conexao.createStatement();
+            ResultSet resultados = preparedStatement.executeQuery(sql);
+
+            List<Item> itens = new ArrayList<>();
+            LocalDateTime dataCompra = null;
+            double valorFrete = 0;
+            Cliente cliente = null;
+            Fornecedor fornecedor = null;
+
+            while (resultados.next()) {
+
+                //pedido
+                dataCompra = resultados.getObject("dataCompra", LocalDateTime.class);
+                valorFrete = resultados.getDouble("valorFrete");
+                //fornecedor
+                var nomeFantasia = resultados.getString("nomeFantasia");
+                var cnpj = resultados.getString("cnpj");
+                var emailFornecedor = resultados.getString("emailFornecedor");
+                var telefoneFornecedor = resultados.getString("telefoneFornecedor");
+                var ruaFornecedor = resultados.getString("ruaFornecedor");
+                var numeroFornecedor = resultados.getString("numeroFornecedor");
+                var bairroFornecedor = resultados.getString("bairroFornecedor");
+                var complementoFornecedor = resultados.getString("complementoFornecedor");
+                var cepFornecedor = resultados.getString("cepFornecedor");
+                var cidadeFornecedor = resultados.getString("cidadeFornecedor");
+                var estadoFornecedor = resultados.getString("estadoFornecedor");
+                //cliente
+                var nomeCliente = resultados.getString("nomeCliente");
+                var cpf = resultados.getString("cpf");
+                var emailCliente = resultados.getString("emailCliente");
+                var telefoneCliente = resultados.getString("telefoneCliente");
+                var ruaCliente = resultados.getString("ruaCliente");
+                var numeroCliente = resultados.getString("numeroCliente");
+                var bairroCliente = resultados.getString("bairroCliente");
+                var complementoCliente = resultados.getString("complementoCliente");
+                var cepCliente = resultados.getString("cepCliente");
+                var cidadeCliente = resultados.getString("cidadeCliente");
+                var estadoCliente = resultados.getString("estadoCliente");
+
+                Contato contatoFornecedor = new Contato(emailFornecedor, telefoneFornecedor);
+                Endereco enderecoFornecedor = new Endereco(ruaFornecedor, numeroFornecedor, bairroFornecedor, complementoFornecedor, cepFornecedor, cidadeFornecedor, estadoFornecedor);
+                fornecedor = new Fornecedor(contatoFornecedor, enderecoFornecedor, nomeFantasia, cnpj);
+
+                Contato contatoCliente = new Contato(emailCliente, telefoneCliente);
+                Endereco enderecoCliente = new Endereco(ruaCliente, numeroCliente, bairroCliente, complementoCliente, cepCliente, cidadeCliente, estadoCliente);
+                cliente = new Cliente(contatoCliente, enderecoCliente, nomeCliente, cpf);
+                //produto
+                var quantidade = resultados.getInt("quantidade");
+                var nomeProduto = resultados.getString("nomeProduto");
+                var descricaoProduto = resultados.getString("descricao");
+                var valorUnitario = resultados.getDouble("valorUnitario");
+                Produto produto = new Produto(nomeProduto, descricaoProduto, valorUnitario);
+                Item item = new Item(produto, quantidade);
+                itens.add(item);
+
+            }
+            return new Pedido(dataCompra, fornecedor, cliente, valorFrete, itens);
+
+        } catch (SQLException sqlException) {
+
+            sqlException.printStackTrace();
+        }
+        throw  new IllegalArgumentException("Pedido não encontrado!");
     }
 
     public void deletarPedido() {

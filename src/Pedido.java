@@ -1,3 +1,5 @@
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +13,21 @@ public class Pedido {
     private List<Item> itens = new ArrayList<>();
 
     public Pedido(Fornecedor fornecedor, Cliente cliente, Double valorFrete, Item item) {
-        this.dataCompra = LocalDateTime.now();
+        this.dataCompra = LocalDateTime.now().withNano(0);
         this.fornecedor = fornecedor;
         this.cliente = cliente;
         this.valorFrete = valorFrete;
         addItem(item);
+        validar();
+
+    }
+    @Deprecated
+    public Pedido(LocalDateTime dataCompra, Fornecedor fornecedor, Cliente cliente, Double valorFrete, List<Item> itens) {
+        this.dataCompra = dataCompra;
+        this.fornecedor = fornecedor;
+        this.cliente = cliente;
+        this.valorFrete = valorFrete;
+        this.itens = itens;
         validar();
     }
 
