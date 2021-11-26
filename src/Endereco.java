@@ -4,9 +4,9 @@ import java.util.List;
 public class Endereco {
 
     private String rua;
-    private String numero;
+    private String numero = null;
     private String bairro;
-    private String complemento;
+    private String complemento = null;
     private String cep;
     private String cidade;
     private String estado;

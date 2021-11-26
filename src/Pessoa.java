@@ -3,16 +3,21 @@ import java.util.List;
 
 public abstract class Pessoa {
 
+    protected int Id;
     private Contato contato;
     private Endereco endereco;
     protected List<String> mensagensDeErro = new ArrayList<>();
 
-    public Pessoa(Contato contato, Endereco endereco) {
+    public Pessoa(Contato contato, Endereco endereco, int Id) {
         this.contato = contato;
         this.endereco = endereco;
+        this.Id = Id;
         validacaoPai();
     }
 
+    public int getId() {
+        return Id;
+    }
     public Contato getContato() {
         return contato;
     }

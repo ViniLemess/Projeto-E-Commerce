@@ -8,7 +8,7 @@ class ItemTest {
     @Test
     public void deveInstanciarItemComSucesso() {
 
-        Produto camiseta = new Produto("T-Shirt", 29.99);
+        Produto camiseta = new Produto("T-Shirt", "Camiseta preta", 29.99);
         Item item1 = new Item(camiseta, 5);
 
         Assertions.assertEquals(camiseta, item1.getProduto());
@@ -28,10 +28,10 @@ class ItemTest {
     @Test
     public void deveValidarMetodoGetValorTotalItens() {
 
-        Produto camiseta = new Produto("T-Shirt", 29.99);
+        Produto camiseta = new Produto("T-Shirt", "Camiseta preta", 29.99);
         Item item1 = new Item(camiseta, 5);
 
-        Double valorTotal = item1.valorTotalItens();
+        Double valorTotal = item1.valorTotalItem();
 
         Assertions.assertEquals(149.95, valorTotal);
     }

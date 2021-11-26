@@ -7,7 +7,13 @@ public class Cliente extends Pessoa{
     private String cpf;
 
     public Cliente(Contato contato, Endereco endereco, String nome, String cpf) {
-        super(contato, endereco);
+        super(contato, endereco, 0);
+        this.nome = nome;
+        this.cpf = cpf;
+        validar();
+    }
+    public Cliente(int Id, Contato contato, Endereco endereco, String nome, String cpf) {
+        super(contato, endereco, Id);
         this.nome = nome;
         this.cpf = cpf;
         validar();

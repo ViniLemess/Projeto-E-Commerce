@@ -4,11 +4,18 @@ public class Fornecedor extends Pessoa {
     private String cnpj;
 
     public Fornecedor(Contato contato, Endereco endereco, String nomeFantasia, String cnpj) {
-        super(contato, endereco);
+        super(contato, endereco, 0);
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
         validar();
     }
+    public Fornecedor(int Id,Contato contato, Endereco endereco, String nomeFantasia, String cnpj) {
+        super(contato, endereco, Id);
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+        validar();
+    }
+
 
     public String getNomeFantasia() {
         return nomeFantasia;

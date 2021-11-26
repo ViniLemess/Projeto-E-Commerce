@@ -20,7 +20,7 @@ public class Item {
         return quantidade;
     }
 
-    public double valorTotalItens() {
+    public double valorTotalItem() {
 
         double total = this.produto.getValorUnitario() * this.quantidade;
         return total;

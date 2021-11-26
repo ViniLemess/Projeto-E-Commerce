@@ -35,9 +35,7 @@ class ClienteTest {
 
         try {
 
-            Helper stringGigante = new Helper();
-
-            String palavraGigante = stringGigante.gerarPalavra(101);
+            String palavraGigante = Helper.gerarPalavra(101);
             Endereco enderecoVinicius = new Endereco(palavraGigante, palavraGigante, palavraGigante, palavraGigante, palavraGigante);
             Contato contatoVinicius = new Contato(palavraGigante, palavraGigante);
 
