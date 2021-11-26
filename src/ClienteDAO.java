@@ -21,12 +21,13 @@ public class ClienteDAO {
 
         if (existeCliente(model.getCpf())) {
 
-           throw new IllegalArgumentException("Cliente já cadastrado!");
+            throw new IllegalArgumentException("Cliente já cadastrado!");
         } else {
 
             try {
 
-                String sql = "INSERT INTO cliente (nome, cpf, email, telefone, rua, numero, bairro, complemento, cep, cidade, estado) " +
+                String sql = "INSERT INTO cliente (nomeCliente, cpf, emailCliente, telefoneCliente, ruaCliente," +
+                        " numeroCliente, bairroCliente, complementoCliente, cepCliente, cidadeCliente, estadoCliente) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? , ?, ?)";
                 PreparedStatement preparedStatement = conexao.prepareStatement(sql);
                 preparedStatement.setString(1, model.getNome());
